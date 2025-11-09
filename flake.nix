@@ -5,8 +5,10 @@
     systems.url = "github:nix-systems/default";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
-    crane.url = "github:ipetkov/crane";
-    crane.inputs.nixpkgs.follows = "nixpkgs";
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
@@ -21,7 +23,6 @@
         config,
         self',
         pkgs,
-        lib,
         system,
         ...
       }: {
@@ -32,8 +33,6 @@
           ];
         };
 
-        # Add your auto-formatters here.
-        # cf. https://numtide.github.io/treefmt/
         treefmt.config = {
           projectRootFile = "flake.nix";
           programs = {

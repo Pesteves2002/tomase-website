@@ -64,6 +64,7 @@ in {
             };
           };
         };
+
         config = let
           cargoToml = builtins.fromTOML (builtins.readFile (self + /Cargo.toml));
           inherit (cargoToml.package) name version;
@@ -75,10 +76,11 @@ in {
               inherit src;
               pname = name;
               version = version;
-              buildInputs = [
-                pkgs.cargo-leptos
-                pkgs.binaryen # Provides wasm-opt
-                pkgs.dart-sass
+              buildInputs = with pkgs; [
+                cargo-generate
+                cargo-leptos
+                binaryen # Provides wasm-opt
+                dart-sass
               ];
             };
             cargoArtifacts = craneLib.buildDepsOnly args;
@@ -96,7 +98,7 @@ in {
                   pkgs.makeWrapper
                 ];
                 installPhaseCommand = ''
-                                mkdir -p $out/bin
+                  mkdir -p $out/bin
                   ls target/
                   ls target/release
                   cp target/release/${name} $out/bin/
@@ -144,6 +146,7 @@ in {
               rustDevShell
             ];
             nativeBuildInputs = with pkgs; [
+              cargo-generate
               dart-sass
               cargo-leptos
               binaryen # Provides wasm-opt
