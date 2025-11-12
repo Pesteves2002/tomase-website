@@ -43,12 +43,25 @@ pub fn App() -> impl IntoView {
         // content for this welcome page
         <Router>
             <main>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/SecondPage">SecondPage</a>
+                </nav>
+                <h1>Routes here 1</h1>
                 <Routes fallback=|| "Page not found :(".into_view()>
                     <Route path=StaticSegment("") view=HomePage />
+                    <Route path=StaticSegment("/SecondPage") view=SecondPage />
                 </Routes>
+
+                <h1>Routes here 2</h1>
             </main>
         </Router>
     }
+}
+
+#[component]
+fn SecondPage() -> impl IntoView {
+    view! { <h1>"Second Page"</h1> }
 }
 
 #[component]
@@ -110,9 +123,9 @@ fn NumericInput() -> impl IntoView {
                 <p>
                     // because `value` is `Result<i32, _>`,
                     // it will render the `i32` if it is `Ok`,
-                    "You entered " // and render nothing and trigger the error boundary
+                    // and render nothing and trigger the error boundary
                     // if it is `Err`. It's a signal, so this will dynamically
-                    // update when `value` changes
+                    "You entered " // update when `value` changes
                     <strong>{value}</strong>
                 </p>
             </ErrorBoundary>
