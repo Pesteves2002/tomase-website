@@ -1,5 +1,7 @@
 pub mod app;
-mod todo;
+
+pub mod adhd;
+pub mod homepage;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]
