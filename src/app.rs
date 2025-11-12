@@ -9,6 +9,8 @@ use std::marker::PhantomData;
 
 use gloo_timers::future::TimeoutFuture;
 
+use crate::todo::BusyButton;
+
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
         <!DOCTYPE html>
@@ -125,8 +127,8 @@ fn NumericInput() -> impl IntoView {
                     // it will render the `i32` if it is `Ok`,
                     // and render nothing and trigger the error boundary
                     // if it is `Err`. It's a signal, so this will dynamically
-                    "You entered " // update when `value` changes
-                    <strong>{value}</strong>
+                    // update when `value` changes
+                    "You entered " <strong>{value}</strong>
                 </p>
             </ErrorBoundary>
         </label>
@@ -205,5 +207,7 @@ fn HomePage() -> impl IntoView {
             {async_result}
             <br />
         </p>
+
+        <BusyButton />
     }
 }

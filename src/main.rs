@@ -1,3 +1,6 @@
+mod app;
+mod todo;
+
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
