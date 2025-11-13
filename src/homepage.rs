@@ -22,10 +22,10 @@ impl Link {
 #[component]
 pub fn HomePage() -> impl IntoView {
     let links = vec![
-        Link::new("strava", "https://www.strava.com/athletes/26750651"),
         Link::new("github", "https://github.com/Pesteves2002/"),
         Link::new("linkedin", "https://www.linkedin.com/in/tomase-pt/"),
         Link::new("mail", "mailto:me@tomase.pt"),
+        Link::new("strava", "https://www.strava.com/athletes/26750651"),
     ];
 
     view! {

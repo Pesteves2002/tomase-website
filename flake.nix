@@ -39,6 +39,7 @@
             alejandra.enable = true;
             rustfmt.enable = true;
             leptosfmt.enable = true;
+            prettier.enable = true;
           };
         };
 

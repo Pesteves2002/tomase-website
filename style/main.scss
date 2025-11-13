@@ -1,8 +1,8 @@
-body {
-	font-family: sans-serif;
-	text-align: center;
-}
+@use "nord" as *;
 
-.red {
-  color: red;
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: $nord0;
+  color: $nord1;
 }

@@ -2,9 +2,9 @@
 
 A Nix template for [full-stack web apps](https://srid.ca/nojs) in Rust using Leptos. Tech used:
 
-- [Leptos](https://leptos.dev/) full-stack framework 
-    - [server functions](https://docs.rs/leptos/latest/leptos/attr.server.html)
-    - [ssr + hydration](https://leptos-rs.github.io/leptos/ssr/index.html)
+- [Leptos](https://leptos.dev/) full-stack framework
+  - [server functions](https://docs.rs/leptos/latest/leptos/attr.server.html)
+  - [ssr + hydration](https://leptos-rs.github.io/leptos/ssr/index.html)
 - [Axum](https://github.com/tokio-rs/axum) as backend framework
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - Build system
