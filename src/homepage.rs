@@ -1,4 +1,7 @@
-use leptos::prelude::*;
+use leptos::{
+    html::{div, h1, h2},
+    prelude::*,
+};
 
 struct Link {
     // Get icons from https://www.svgrepo.com/vectors/strava/
@@ -27,10 +30,18 @@ pub fn HomePage() -> impl IntoView {
         Link::new("mail", "mailto:me@tomase.pt"),
         Link::new("strava", "https://www.strava.com/athletes/26750651"),
     ];
+    let title = h1().inner_html("Tomás Esteves");
 
-    let presentation = "
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia dictum justo ut tempor. Etiam mattis suscipit ipsum, ut condimentum urna eleifend non. Nunc sed tincidunt odio, a dictum velit. Suspendisse sagittis elementum erat, vitae ultrices ex dapibus vitae. Pellentesque placerat, lacus ac molestie lobortis, turpis lorem interdum enim, id pharetra lacus sapien in leo. Suspendisse fringilla sodales lorem nec vehicula. Vestibulum non mollis magna, sit amet lacinia leo. Phasellus venenatis sem leo, ac tempor nunc efficitur sed. Mauris quam lorem, scelerisque vitae purus vel, mattis lacinia ex. Donec gravida auctor libero fringilla dictum. In ac felis et enim tempor feugiat. Donec vel ultrices dui. Donec at nisi malesuada, facilisis arcu nec, auctor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-";
+    let subtitle = h2().inner_html("Compute Science & Engineering Graduate at <a href=\"https://tecnico.ulisboa.pt/en/\">Instituto Superior Técnico</a>");
+
+    let presentation = div().class("presentation").inner_html("Recently gratuated from my Master's with a thesis in distributing the computation of matrix functions.");
+
+    // Create nested childs
+    // let content_container = div()
+    //     .class("content-container")
+    //     .child(title)
+    //     .child(subtitle)
+    //     .child(presentation);
 
     view! {
         <div class="container">
@@ -38,7 +49,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia dictum ju
                 <img src="me.jpg" alt="Me" />
             </div>
             <div class="right">
-                <div class="presentation">{presentation}</div>
+                <div class="content-container">{title} {subtitle} {presentation}</div>
                 <div class="links-container">
                     {links
                         .into_iter()

@@ -125,6 +125,7 @@ in {
             shellHook = ''
               # For rust-analyzer 'hover' tooltips to work.
               export RUST_SRC_PATH="${rustToolchain}/lib/rustlib/src/rust/library";
+              export RUSTFLAGS="--cfg erase_components";
             '';
             buildInputs = [
               pkgs.libiconv

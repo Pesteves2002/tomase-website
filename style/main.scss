@@ -5,7 +5,7 @@ body {
   text-align: center;
   background-color: $nord0;
   color: $nord4;
-  height: 100%
+  height: 100%;
 }
 
 .navbar {
@@ -90,6 +90,10 @@ a:focus {
   justify-content: space-around;
 
   gap: 1rem;
+}
+
+.content-container {
+  text-align: left;
 }
 
 .presentation {
