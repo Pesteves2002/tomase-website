@@ -6,6 +6,13 @@ body {
   background-color: $nord0;
   color: $nord4;
   height: 100%;
+
+  margin: 0;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar {
@@ -53,7 +60,7 @@ a:focus {
 }
 
 .container {
-  width: 70%;
+  width: 80%;
   height: 90%;
 
   margin: 0 auto;
@@ -83,24 +90,38 @@ a:focus {
 .right {
   flex: 2; // larger portion
 
-  width: 100%;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   gap: 1rem;
-}
+  padding: 2rem;
 
-.content-container {
   text-align: left;
 }
 
+.header-block {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .presentation {
+  flex: 2;
+  font-size: clamp(1rem, 1.5vw, 1.7rem);
+}
+
+.presentation br {
+  display: block;
+  margin-bottom: 20px;
 }
 
 .links-container {
+  flex: 1;
   display: flex;
+  align-items: center;
+
   flex-wrap: wrap;
   justify-content: space-evenly;
 }

@@ -34,7 +34,13 @@ pub fn HomePage() -> impl IntoView {
 
     let subtitle = h2().inner_html("Compute Science & Engineering Graduate at <a href=\"https://tecnico.ulisboa.pt/en/\">Instituto Superior Técnico</a>");
 
-    let presentation = div().class("presentation").inner_html("Recently gratuated from my Master's with a thesis in distributing the computation of matrix functions.");
+    let presentation = div().class("presentation").inner_html(
+        r#"
+        Recently gratuated from my Master's with a thesis in distributing the computation of matrix functions. <br/>
+        Comfortable with high-performance computing techonologies such as OpenMP and OpenMPI. <br/>
+
+        Experience with the Spring framework, database management, and system administration.
+        "#);
 
     // Create nested childs
     // let content_container = div()
@@ -49,7 +55,8 @@ pub fn HomePage() -> impl IntoView {
                 <img src="me.jpg" alt="Me" />
             </div>
             <div class="right">
-                <div class="content-container">{title} {subtitle} {presentation}</div>
+                <div class="header-block">{title} {subtitle}</div>
+                {presentation}
                 <div class="links-container">
                     {links
                         .into_iter()

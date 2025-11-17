@@ -42,12 +42,12 @@ pub fn App() -> impl IntoView {
         // content for this welcome page
         <Router>
             <main>
-                <nav class="navbar">
-                    <a href="/">Home</a>
-                    <div class="nav-right">
-                        <a href="/ADHD">ADHD Corner</a>
-                    </div>
-                </nav>
+                // <nav class="navbar">
+                // <a href="/">Home</a>
+                // <div class="nav-right">
+                // <a href="/ADHD">ADHD Corner</a>
+                // </div>
+                // </nav>
                 <Routes fallback=|| "Page not found :(".into_view()>
                     <Route path=StaticSegment("") view=HomePage />
                     <Route path=StaticSegment("/ADHD") view=ADHDPage />
