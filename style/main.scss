@@ -1,18 +1,26 @@
 @use "nord" as *;
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: sans-serif;
   text-align: center;
   background-color: $nord0;
   color: $nord4;
-  height: 100%;
+}
 
-  margin: 0;
-  height: 100vh;
-
+main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  overflow: auto;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .navbar {
@@ -26,10 +34,6 @@ body {
   display: flex;
   gap: 16px;
 }
-
-// * {
-//   border: 2px solid red;
-// }
 
 a {
   color: $nord8;
@@ -61,9 +65,7 @@ a:focus {
 
 .container {
   width: 80%;
-  height: 90%;
 
-  margin: 0 auto;
   padding: 1rem;
   background-color: $nord1;
   border-radius: 8px;
@@ -71,8 +73,14 @@ a:focus {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-
   gap: 1rem;
+}
+
+/* Mobile layout */
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
 }
 
 .left {
@@ -81,8 +89,7 @@ a:focus {
 }
 
 .left img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -94,8 +101,7 @@ a:focus {
   flex-direction: column;
   justify-content: space-between;
 
-  gap: 1rem;
-  padding: 2rem;
+  // padding: 2rem 2rem;
 
   text-align: left;
 }
@@ -124,6 +130,8 @@ a:focus {
 
   flex-wrap: wrap;
   justify-content: space-evenly;
+
+  padding-top: 2rem;
 }
 
 .links-container a img {
