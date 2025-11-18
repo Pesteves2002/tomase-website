@@ -37,7 +37,7 @@ pub fn HomePage() -> impl IntoView {
     let presentation = div().class("presentation").inner_html(
         r#"
         Recently gratuated from my Master's with a thesis in distributing the computation of matrix functions. <br/>
-        Comfortable with high-performance computing techonologies such as OpenMP and OpenMPI. <br/>
+        Comfortable with high-performance computing technologies such as OpenMP and OpenMPI. <br/>
 
         Experience with the Spring framework, database management, and system administration.
         "#);
