@@ -1,13 +1,12 @@
 @use "nord" as *;
 
-html,
-body {
+html {
   height: 100%;
-  margin: 0;
-  overflow: hidden;
 }
 
 body {
+  min-height: 100%;
+  margin: 0;
   font-family: sans-serif;
   text-align: center;
   background-color: $nord0;
@@ -21,18 +20,22 @@ main {
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-height: 100vh;
-  overflow: hidden;
-  // padding: 1rem;
-  box-sizing: border-box;
+  min-height: 0;
+  padding: 1rem;
   padding-bottom: 10vh;
+  box-sizing: border-box;
 }
 
+/* ── Navbar ─────────────────────────────────────────── */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16 32px;
+  padding: 16px 32px; /* fixed: was "16 32px" */
+
+  @media (max-width: 600px) {
+    padding: 12px 16px;
+  }
 }
 
 .nav-right {
@@ -40,6 +43,7 @@ main {
   gap: 16px;
 }
 
+/* ── Links ──────────────────────────────────────────── */
 a {
   color: $nord8;
   text-decoration: none;
@@ -52,13 +56,8 @@ a {
     text-shadow: 0 0 4px $nord10;
   }
 
-  &:active {
-    color: $nord10;
-  }
-
-  &:visited {
-    color: $nord7;
-  }
+  &:active  { color: $nord10; }
+  &:visited { color: $nord7; }
 }
 
 a:focus {
@@ -68,9 +67,9 @@ a:focus {
   padding: 0 2px;
 }
 
+/* ── Container ──────────────────────────────────────── */
 .container {
-  width: 80%;
-
+  width: 80%; /* max cap on wide screens */
   padding: 1rem;
   background-color: $nord1;
   border-radius: 8px;
@@ -79,35 +78,39 @@ a:focus {
   justify-content: space-between;
   align-items: stretch;
   gap: 1rem;
-}
 
-/* Mobile layout */
-@media (max-width: 1000px) {
-  .container {
+  @media (max-width: 1100px) {
     flex-direction: column;
+    width: calc(100% - 2rem); /* full bleed minus safe margin */
+
+   .left {
+        max-width: 200px;   // ← adjust to taste
+        align-self: center; // optional: keeps it centred in the column
+      }
   }
 }
 
+/* ── Left / Right panes ─────────────────────────────── */
 .left {
-  height: 100%;
   flex: 1;
 }
 
 .left img {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   max-width: 100%;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .right {
-  flex: 2; // larger portion
-
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  // padding: 2rem 2rem;
-
   text-align: left;
 }
 
@@ -132,40 +135,38 @@ a:focus {
   flex: 1;
   display: flex;
   align-items: center;
-
   flex-wrap: wrap;
   justify-content: space-evenly;
-
   padding-top: 2rem;
 }
 
 .links-container a img {
   height: 32px;
-  widht: auto;
-
+  width: auto; /* fixed typo: was "widht" */
   object-fit: contain;
   transition: transform 0.2s ease;
 
-  &:hover {
-    transform: scale(1.1);
-  }
+  &:hover { transform: scale(1.1); }
 
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
-    contrast(100%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
+/* ── Music page ─────────────────────────────────────── */
 .music-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   padding: 2rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  width: min(660px, 100%); /* fluid, never overflows viewport */
 }
 
 .backdrop {
@@ -174,7 +175,7 @@ a:focus {
   background-size: cover;
   background-position: center;
   filter: blur(24px) brightness(0.45) saturate(1.4);
-  transform: scale(1.1); // prevents blur edge bleed
+  transform: scale(1.1);
   z-index: 0;
 }
 
@@ -189,8 +190,9 @@ a:focus {
 }
 
 .album-art {
-  width: 600px;
-  height: 600px;
+  /* fluid square: fills card width up to 600px */
+  width: min(600px, 100%);
+  aspect-ratio: 1 / 1; /* replaces the fixed height */
   border-radius: 12px;
   object-fit: cover;
   box-shadow:
@@ -204,18 +206,16 @@ a:focus {
 }
 
 .track-info {
-  display: block;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.5;
-
-  // Clamp to two lines if the string is very long
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+/* ── Refresh button ─────────────────────────────────── */
 .refresh-btn {
   font-size: 0.75rem;
   padding: 0.3rem 0.85rem;
@@ -235,14 +235,13 @@ a:focus {
     border-color: rgba(255, 255, 255, 0.4);
   }
 
-  &:active {
-    transform: scale(0.96);
-  }
+  &:active { transform: scale(0.96); }
 }
 
+/* ── Skeleton / error states ────────────────────────── */
 .card-skeleton {
-  width: 360px;
-  height: 420px;
+  width: min(360px, 100%); /* was fixed 360px */
+  aspect-ratio: 6 / 7;
   border-radius: 16px;
   background: linear-gradient(
     90deg,
@@ -254,13 +253,8 @@ a:focus {
   animation: shimmer 1.4s infinite;
 }
 
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
 .error-card {
-  width: 360px;
+  width: min(360px, 100%); /* was fixed 360px */
   padding: 1.5rem;
   border-radius: 16px;
   background: rgba(220, 50, 50, 0.12);
@@ -268,4 +262,10 @@ a:focus {
   color: #f87171;
   font-size: 0.875rem;
   text-align: center;
+  box-sizing: border-box;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
