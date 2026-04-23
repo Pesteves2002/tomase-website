@@ -3,3 +3,4 @@ debug/
 .direnv
 .sass-cache
 result
+.env

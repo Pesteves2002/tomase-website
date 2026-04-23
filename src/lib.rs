@@ -2,6 +2,7 @@ pub mod app;
 
 pub mod adhd;
 pub mod homepage;
+pub mod music;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]

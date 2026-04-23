@@ -1,12 +1,13 @@
 use leptos::prelude::*;
-use leptos_meta::{MetaTags, Stylesheet, Title, provide_meta_context};
+use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
 use leptos_router::{
-    StaticSegment,
     components::{Route, Router, Routes},
+    StaticSegment,
 };
 
 use crate::adhd::*;
 use crate::homepage::*;
+use crate::music::*;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -37,19 +38,20 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/tomase-website.css" />
 
         // sets the document title
-        <Title text="Home | Tomás Esteves" />
+        <Title text="Tomás Esteves Website" />
 
         // content for this welcome page
         <Router>
+            <nav class="navbar">
+                <a href="/">Home</a>
+                <div class="nav-right">
+                    <a href="/music">Music</a>
+                </div>
+            </nav>
             <main>
-                // <nav class="navbar">
-                // <a href="/">Home</a>
-                // <div class="nav-right">
-                // <a href="/ADHD">ADHD Corner</a>
-                // </div>
-                // </nav>
                 <Routes fallback=|| "Page not found :(".into_view()>
                     <Route path=StaticSegment("") view=HomePage />
+                    <Route path=StaticSegment("/music") view=MusicPage />
                     <Route path=StaticSegment("/ADHD") view=ADHDPage />
                 </Routes>
             </main>
